@@ -131,4 +131,5 @@ This Python script is used to plot the thrust data saved on the SD card. It read
 - Force data is sometimes incorrect(sometimes it goes below 0)
 - Ble signal is weak. connecting server to client via relays is hardly working.(but it worked on the experiment day "fortunately". next time i'll use WIFI)
 - Not making structure, apparent flaws. it was on just breadboard.
- 
+- Nozzle of the engine was broken. 
+- Shape of thrust graph was not correspond to the expected one.
