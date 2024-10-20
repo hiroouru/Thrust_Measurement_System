@@ -71,54 +71,51 @@ This Python script is used to plot the thrust data saved on the SD card. It read
    ```bash
    pip install matplotlib
    pip install pyserial
+**Client-Side ESP32**
+- Relay 1:        GPIO 12  // Ignition control relay
+- Relay 2:        GPIO 13  // Additional relay for other use
+- SD Card Module:
+   - CS:          GPIO 5   // Chip Select
+   - MOSI:        GPIO 23  // Master Out Slave In
+   - MISO:        GPIO 19  // Master In Slave Out
+   - SCK:         GPIO 18  // Serial Clock
+- LED Blue:       GPIO 14  // Status LED (writing to SD)
+- LED Green:      GPIO 27  // Status LED (Measurement Start)
+- LED Red:        GPIO 26  // Status LED (Measurement End)
+- LED White:      GPIO 25  // Intermediating status LED (between verifying and starting)
 
-client-side ESP32
-Component	            ESP32 Pin	         Description
-Relay 1	               GPIO 12	            Ignition control relay
-Relay 2	               GPIO 13	            Additional relay for other use
-SD Card Module	         GPIO 5	            CS (Chip Select)
-                        GPIO 23	            MOSI (Master Out Slave In)
-                        GPIO 19	            MISO (Master In Slave Out)
-                        GPIO 18	            SCK (Serial Clock)
-LED Blue	               GPIO 14	            Status LED (writing to SD)
-LED Green	            GPIO 27	            Status LED (Measurement Start)
-LED Red	               GPIO 26	            Status LED (Measurement End)
-LED White	            GPIO 25	            intermediating status LED(between verifying and starting)
+**Server-Side ESP32**
+- HX711 Load Cell:
+   - DT:          GPIO 32  // Data Out
+   - SCK:         GPIO 33  // Serial Clock
+- SD Card Module:
+   - CS:          GPIO 5   // Chip Select
+   - MOSI:        GPIO 23  // Master Out Slave In
+   - MISO:        GPIO 19  // Master In Slave Out
+   - SCK:         GPIO 18  // Serial Clock
+- LED Blue:       GPIO 14  // Status LED (Start Measurement)
+- LED Green:      GPIO 27  // Status LED (In Progress)
+- LED Red:        GPIO 26  // Status LED (End Measurement)
+- LED White:      GPIO 25  // Status LED (Verifying SD)
 
-
-Server-Side ESP32
-Component	            ESP32 Pin	         Description
-HX711 Load Cell	      GPIO 32	            DT (Data Out)
-                        GPIO 33	            SCK (Serial Clock)
-SD Card Module	         GPIO 5	            CS (Chip Select)
-                        GPIO 23	            MOSI (Master Out Slave In)
-                        GPIO 19	            MISO (Master In Slave Out)
-                        GPIO 18	            SCK (Serial Clock)
-LED Blue	               GPIO 14	            Status LED (Start Measurement)
-LED Green	            GPIO 27	            Status LED (In Progress)
-LED Red	               GPIO 26	            Status LED (End Measurement)
-LED White	            GPIO 25	            Status LED (Verifying SD)
-
-Load Cell to HX711 Module
-HX711 Pin	            Load Cell Wire	      Description
-E+	                     Red	               Excitation+
-E-	                     Black	               Excitation-
-A+	                     White	               Signal+
-A-	                     Green	               Signal-
+**SD Card Module to ESP32**
+- E+:   Red      // Excitation+
+- E-:   Black    // Excitation-
+- A+:   White    // Signal+
+- A-:   Green    // Signal-
 
 
-SD Card Module to ESP32
-SD Module Pin	         ESP32 Pin	         Description
-                        CS	                  GPIO 5	Chip Select (CS)
-                        MOSI	               GPIO 23	Master Out, Slave In (MOSI)
-                        MISO	               GPIO 19	Master In, Slave Out (MISO)
-                        SCK	               GPIO 18	Serial Clock (SCK)
-                        VCC	               5V	Power
-                        GND	               GND	Ground
+**SD Card Module to ESP32**
+- CS:      GPIO 5    // Chip Select (CS)
+- MOSI:    GPIO 23   // Master Out, Slave In (MOSI)
+- MISO:    GPIO 19   // Master In, Slave Out (MISO)
+- SCK:     GPIO 18   // Serial Clock (SCK)
+- VCC:     5V        // Power
+- GND:     GND       // Ground
 
 
-Ignition Pin Mapping
-Component	            arduino Pin	         Description
-Input Pin	            D 8            	   Input signal from the ESP32 to trigger ignition
-Relay Control Pin	      D 4	               Connected to the relay to control the ignition
-Indicator LED Pin(Red)  D 9	               Connected to an LED for ignition status
+**Ignition Pin Mapping**
+- Input Pin:               D8   // Input signal from the ESP32 to trigger ignition
+- Relay Control Pin:       D4   // Connected to the relay to control the ignition
+- Indicator LED Pin(RED):       D9   // Connected to an LED for ignition status
+
