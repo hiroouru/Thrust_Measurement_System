@@ -118,7 +118,17 @@ This Python script is used to plot the thrust data saved on the SD card. It read
 
 
 **Ignition Pin Mapping**
-- Input Pin:               D8   // Input signal from the ESP32 to trigger ignition
-- Relay Control Pin:       D4   // Connected to the relay to control the ignition
+- Input Pin:                    D8   // Input signal from the ESP32 to trigger ignition
+- Relay Control Pin:            D4   // Connected to the relay to control the ignition
 - Indicator LED Pin(RED):       D9   // Connected to an LED for ignition status
 
+
+
+
+
+
+### problems
+- Force data is sometimes incorrect(sometimes it goes below 0)
+- Ble signal is weak. connecting server to client via relays is hardly working.(but it worked on the experiment day "fortunately". next time i'll use WIFI)
+- Not making structure, apparent flaws. it was on just breadboard.
+ 
