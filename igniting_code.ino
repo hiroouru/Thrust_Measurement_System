@@ -11,23 +11,23 @@ void setup() {
   pinMode(relaypin, OUTPUT); // Configure the relay base pin as output
   pinMode(indicator_pin, OUTPUT); // Configure the indicator pin as output
   digitalWrite(relaypin, LOW); // Ensure the relay is off initially
-  Serial.begin(9600); // Start serial communication at 9600 baud
+  Serial.begin(9600); 
 }
 
 void loop() {
   int inputState = digitalRead(inputPin); // Read the state of the input pin
 
-  if (inputState == HIGH && !signalActive) { // Signal just started
+  if (inputState == HIGH && !signalActive) { 
     signalActive = true;
     signalStartTime = millis();
-  } else if (inputState == LOW && signalActive) { // Signal just ended
+  } else if (inputState == LOW && signalActive) { 
     signalDuration = millis() - signalStartTime;
     signalActive = false;
-    if (signalDuration > 750) { // Check if the signal duration is over 750ms
+    if (signalDuration > 750) { // Check if the signal duration is over 750ms for ignore incorrect signal
       triggered = true;
       digitalWrite(relaypin, HIGH); // Turn on the relay
       digitalWrite(indicator_pin, HIGH); //Turn on the LED
-      Serial.println("Triggered for 10 seconds"); // Debug message (optional)
+      Serial.println("Triggered for 10 seconds"); // Debug message 
     }
   }
 
@@ -35,6 +35,6 @@ void loop() {
     digitalWrite(relaypin, LOW); // Turn off the relay
     digitalWrite(indicator_pin, LOW); //Turn off the LED
     triggered = false;
-    Serial.println("Reset"); // Debug message (optional)
+    Serial.println("Reset"); // Debug message 
   }
 }
