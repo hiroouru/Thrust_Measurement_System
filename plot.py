@@ -5,7 +5,7 @@ from matplotlib.animation import FuncAnimation
 from threading import Thread
 
 # Configure the serial port
-serial_port = 'COM7'  # Replace with real serial port
+serial_port = 'COM7'  # Serial port
 baud_rate = 115200
 
 # Initialize global variables
