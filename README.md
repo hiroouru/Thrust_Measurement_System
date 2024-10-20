@@ -16,7 +16,7 @@ The project consists of two major components:
 
 - **ESP32** (two boards for client-server communication and relays)
 - **HX711 Load Cell Amplifier** for thrust measurement
-- **Load Cell** for thrust measurement
+- **Load Cell** for thrust measurement(fit your expected thrust)
 - **SD Card Module** for saving thrust data
 - **Relays** for ignition control
 - **LEDs** for status indication(blue, green, red, white)
@@ -48,7 +48,10 @@ These files contain the code for the BLE-based ignition system. The relays are t
 This Python script is used to plot the thrust data saved on the SD card. It reads the data file and plots it using matplotlib.
 
 ## Setup Instructions
-
+1.**calibrate your loadcell**
+   -find calibratoin example of library, HX711_ADC, and calibrate your loadcell.
+   -write down the calibration result
+   -change calfactor(at server code) into your result
 ### Arduino Code
 1. **Install the necessary libraries** in the Arduino IDE:
    - `BLEDevice`
