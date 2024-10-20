@@ -5,13 +5,13 @@ const int ignition = 12; // For command 4
 const int start_measure = 14; // For command 5
 const int restart_measure = 27; // For command 6
 const int SD_save = 26; // For command 7
-const int sent_message_indicator = 15; //sent message indicator
+const int sent_message_indicator = 15; 
 
-int command=0; //command
+int command=0; 
 
-// The remote service we wish to connect to.
+// The remote service 
 static BLEUUID serviceUUID("4fafc201-1fb5-459e-8fcc-c5c9c331914b");
-// The characteristic of the remote service we are interested in.
+// The characteristic of the remote service 
 static BLEUUID charUUID("beb5483e-36e1-4688-b7f5-ea07361b26a8");
 static BLEUUID alarmCharUUID("8e93f12a-1bf5-4a5e-9e03-735c6d1e7a82");
 
@@ -58,9 +58,9 @@ bool connectToServer() {
   }
   Serial.println(" - Connected to server");
 
-  pClient->setMTU(517);  // set client to request maximum MTU from server (default is 23 otherwise)
+  pClient->setMTU(517);  // set client to request maximum MTU from server 
 
-  // Obtain a reference to the service we are after in the remote BLE server.
+  // Obtain a reference to the service 
   BLERemoteService *pRemoteService = pClient->getService(serviceUUID);
   if (pRemoteService == nullptr) {
     Serial.print("Failed to find our service UUID: ");
@@ -96,18 +96,18 @@ bool connectToServer() {
   return true;
 }
 
-/**
- * Scan for BLE servers and find the first one that advertises the service we are looking for.
- */
+
+ // Scan for BLE servers and find the first one that advertises the service.
+ 
 class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
-  /**
-   * Called for each advertising BLE server.
-   */
+  
+   //Called for each advertising BLE server.
+   
   void onResult(BLEAdvertisedDevice advertisedDevice) {
     Serial.print("BLE Advertised Device found: ");
     Serial.println(advertisedDevice.toString().c_str());
 
-    // We have found a device, let us now see if it contains the service we are looking for.
+    
     if (advertisedDevice.haveServiceUUID() && advertisedDevice.isAdvertisingService(serviceUUID)) {
       Serial.print("Found device with matching UUID: ");
       Serial.println(advertisedDevice.toString().c_str());
@@ -159,9 +159,9 @@ void loop() {
 
 
 
-  // If the flag "doConnect" is true then we have scanned for and found the desired
-  // BLE Server with which we wish to connect.  Now we connect to it.  Once we are
-  // connected we set the connected flag to be true.
+  // If the flag "doConnect" is true then It has scanned for and found the desired
+  // BLE Server with which it wishes to connect.  Now it connects. 
+  // connected It sets the connected flag to be true.
   if (doConnect) {
     Serial.println("Attempting to connect to the server...");
     if (connectToServer()) {
@@ -172,7 +172,7 @@ void loop() {
     doConnect = false;
   }
 
-  // If we are connected to a peer BLE Server, update the characteristic each time we are reached
+  // If it is connected to a peer BLE Server, update the characteristic each time it is reached
   // with the current time since boot.
   if (connected && pRemoteCharacteristic != nullptr) { // Ensure the characteristic is valid
     // The notify callback will handle printing the received values
@@ -186,7 +186,7 @@ void loop() {
   
     
     if (command == 5) {
-      // Send start measurement trigger
+      
       if (pRemoteAlarmCharacteristic != nullptr) {
         pRemoteAlarmCharacteristic->writeValue("5");
         Serial.println("Sent start measurement trigger");
@@ -196,7 +196,7 @@ void loop() {
         command = 0;
       }
     } else if (command == 4) {
-      // Send digital write trigger
+     
       if (pRemoteAlarmCharacteristic != nullptr) {
         pRemoteAlarmCharacteristic->writeValue("4");
         Serial.println("Sent digital write trigger");
@@ -207,7 +207,7 @@ void loop() {
       }
     }
     else if (command == 6) {
-      // Send digital write trigger
+     
       if (pRemoteAlarmCharacteristic != nullptr) {
         pRemoteAlarmCharacteristic->writeValue("6");
         Serial.println("Sent restart measurement trigger");
@@ -218,7 +218,7 @@ void loop() {
       }
     } 
     else if (command == 7) {
-      // Send digital write trigger
+      
       if (pRemoteAlarmCharacteristic != nullptr) {
         pRemoteAlarmCharacteristic->writeValue("7");
         Serial.println("Sent SD stop trigger");
@@ -230,5 +230,5 @@ void loop() {
     }
   
 
-  delay(1000);  // Delay a second between loops.
+  delay(1000);  
 }
