@@ -8,7 +8,7 @@
 #define CHARACTERISTIC_UUID         "beb5483e-36e1-4688-b7f5-ea07361b26a8"
 #define ALARM_CHARACTERISTIC_UUID   "8e93f12a-1bf5-4a5e-9e03-735c6d1e7a82"
 
-// Define pins for digitalWrite operations
+// Define pins 
 const int RELAY_PIN1 = 12; // For command 4
 const int RELAY_PIN2 = 13; // For command 5
 int command = 0;
@@ -118,13 +118,13 @@ class AlarmCallbackHandler : public BLECharacteristicCallbacks {
     Serial.println(value);
     if (value == "5") {
       digitalWrite(RELAY_PIN1, HIGH);
-      delay(100); // Optional delay to ensure the relay is activated
+      delay(100); 
       digitalWrite(RELAY_PIN1, LOW);
       command = 5;
       Serial.println("Triggered RELAY_PIN1 for command 5");
     } else if (value == "4") {
       digitalWrite(RELAY_PIN2, HIGH);
-      delay(100); // Optional delay to ensure the relay is activated
+      delay(100); 
       digitalWrite(RELAY_PIN2, LOW);
       command = 4;
       Serial.println("Triggered RELAY_PIN2 for command 4");
